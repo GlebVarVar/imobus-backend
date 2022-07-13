@@ -1,0 +1,23 @@
+{
+    "development": {
+      "username": "root",
+      "password": "1234",
+      "database": "imobis",
+      "host": "localhost:3306",
+      "dialect": "mysql"
+    },
+    "test": {
+      "username": "root",
+      "password": "1234",
+      "database": "imobis",
+      "host": "localhost:3306",
+      "dialect": "mysql"
+    },
+    "production": {
+      "username": "root",
+      "password": "1234",
+      "database": "imobis",
+      "host": "localhost:3306",
+      "dialect": "mysql"
+    }
+  }
