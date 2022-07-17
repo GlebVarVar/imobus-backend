@@ -8,17 +8,20 @@ module.exports = (sequelize, DataTypes) => {
 
     });
 
-    Posts.associate = (models) => {
-        Posts.hasMany(models.VK, {
-            onDelete: "cascade",
-        });
-        Posts.hasMany(models.SMS, {
-            onDelete: "cascade",
-        });
-        Posts.hasMany(models.Telegram, {
-            onDelete: "cascade",
-        });
-        Posts.hasMany(models.WhatsApp, {
+    Users.associate = (models) => {
+        // Users.hasMany(models.VK, {
+        //     onDelete: "cascade",
+        // });
+        // Users.hasMany(models.SMS, {
+        //     onDelete: "cascade",
+        // });
+        // Users.hasMany(models.Telegram, {
+        //     onDelete: "cascade",
+        // });
+        // Users.hasMany(models.WhatsApp, {
+        //     onDelete: "cascade",
+        // });
+        Users.hasMany(models.Messengers, {
             onDelete: "cascade",
         });
     }

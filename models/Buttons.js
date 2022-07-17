@@ -9,9 +9,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        link: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        }
     });
-
-
 
     return Buttons;
 }
