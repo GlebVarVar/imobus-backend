@@ -1,3 +1,4 @@
+// таблица для хранения информации о мессенджерах
 module.exports = (sequelize, DataTypes) => {
 
     const Messengers = sequelize.define("Messengers", {

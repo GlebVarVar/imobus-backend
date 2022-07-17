@@ -14,25 +14,39 @@ const db = require('./models');
 const { Users, Messengers, Buttons } = require("./models");
 
 
+
+// получение информации о пользователе
 app.get('/api/data/', async (req, res) => {
     const username = req.headers.username;
-    // include: [Likes, Ratings]
-    const data = await Users.findOne({ where: { username: username }, include: [{ model : Messengers ,
-        include: {
-            model : Buttons
-        } 
-    }] });
+    
+    const data = await Users.findOne({
+        where: { username: username }, 
+        include: [{
+            model : Messengers ,
+            include: {
+                model : Buttons
+            } 
+        }] 
+    });
+
     res.json(data);
 });
 
 
+// изменение информации о пользователе или добавление нового пользователя
 app.post('/api/data/', async (req, res) => {
     const {userName, data} = req.body;
+
+    // пробуем найти пользователя в базе
     const answer = await Users.findOne({ where: { username: userName }});
+
     if (!answer) {
+        // если пользователя нет в базе, то добавляем его
         await Users.create({
             username: userName,
         });
+
+        // добавление информации о мессенджерах
         data.map(async (messenger)  => {
             const {name, text, viewType, buttons} = messenger;
             const findUser = await Users.findOne({ where: { username: userName }});
@@ -45,13 +59,18 @@ app.post('/api/data/', async (req, res) => {
                 UserId: findUser.dataValues.id,
             });
 
-            const findMessenger = await Messengers.findOne({ where: { userId: findUser.dataValues.id, messengerName: name }});
-        
+            const findMessenger = await Messengers.findOne({ 
+                where: { 
+                    userId: findUser.dataValues.id, 
+                    messengerName: name 
+                }
+            });
+            
+            // добавление информации о кнопках
             (buttons != null) &&
             buttons.map(async (button, index) => {
                 const {text, id, link} = button;
                 
-
                 await Buttons.create({
                     number: id,
                     text: text, 
@@ -63,13 +82,21 @@ app.post('/api/data/', async (req, res) => {
         })
     
     } else {
+        // если пользователь есть в базе, то обновляем данные
+
         data.map(async (messenger)  => {
             const {name, text, viewType, buttons} = messenger;
             const findUser = await Users.findOne({ where: { username: userName }});
             
 
-            const currentMessenger = await Messengers.findOne({ where: { UserId: findUser.dataValues.id, messengerName: name } });
+            const currentMessenger = await Messengers.findOne({
+                where: {
+                    UserId: findUser.dataValues.id, 
+                    messengerName: name 
+                } 
+            });
 
+            // обновление информации о мессенджерах
             await currentMessenger.update({
                 text: text,
                 inline: viewType,
@@ -77,14 +104,15 @@ app.post('/api/data/', async (req, res) => {
             });
             await currentMessenger.save()
 
-
+            // удаляем все кнопки из базы связанные с этим мессенджером,
+            // затем добавляем новые кнопки
+            // мне показалось, что так верно
             await Buttons.destroy({ where: { MessengerId: currentMessenger.id} });
         
             (buttons != null) &&
             buttons.map(async (button, index) => {
                 const {text, id, link} = button;
                 
-
                 await Buttons.create({
                     number: id,
                     text: text, 
@@ -95,10 +123,6 @@ app.post('/api/data/', async (req, res) => {
             
         })
     }
-
-    
-
-    res.send('hello world');
 });
 
 
@@ -106,9 +130,7 @@ app.post('/api/data/', async (req, res) => {
 db.sequelize
     .sync().
     then(() => {
-    app.listen(process.env.PORT || 3001, () => {
-        console.log("server running on 'port 3001");
-    });
+    app.listen(process.env.PORT || 3001);
 })
     .catch((err) => {
         console.log(err);

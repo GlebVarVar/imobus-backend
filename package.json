@@ -1,14 +1,22 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend for application (Imorbis CRUD) 17/07/2022",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["imorbis","backend","crud", "backend","nodejs","express","sequelize", "mysql"],
+  "author": {
+    "name": "Kostrov Gleb",
+    "email": "anegada1@mail.ru",
+    "url": "https://github.com/GlebVarVar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GlebVarVar/imobus-backend"
+  },
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

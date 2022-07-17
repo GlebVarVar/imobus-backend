@@ -1,3 +1,4 @@
+// таблица для хранения кнопок
 module.exports = (sequelize, DataTypes) => {
 
     const Buttons = sequelize.define("Buttons", {

@@ -1,3 +1,4 @@
+// таблица для хранения пользователей
 module.exports = (sequelize, DataTypes) => {
 
     const Users = sequelize.define("Users", {
@@ -9,18 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Users.associate = (models) => {
-        // Users.hasMany(models.VK, {
-        //     onDelete: "cascade",
-        // });
-        // Users.hasMany(models.SMS, {
-        //     onDelete: "cascade",
-        // });
-        // Users.hasMany(models.Telegram, {
-        //     onDelete: "cascade",
-        // });
-        // Users.hasMany(models.WhatsApp, {
-        //     onDelete: "cascade",
-        // });
         Users.hasMany(models.Messengers, {
             onDelete: "cascade",
         });
