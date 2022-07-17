@@ -22,14 +22,12 @@ app.get('/api/data/', async (req, res) => {
             model : Buttons
         } 
     }] });
-    console.log(data);
     res.json(data);
 });
 
 
 app.post('/api/data/', async (req, res) => {
     const {userName, data} = req.body;
-    console.log(data);
     const answer = await Users.findOne({ where: { username: userName }});
     if (!answer) {
         await Users.create({
@@ -51,7 +49,6 @@ app.post('/api/data/', async (req, res) => {
         
             (buttons != null) &&
             buttons.map(async (button, index) => {
-                console.log(button);
                 const {text, id, link} = button;
                 
 
@@ -85,7 +82,6 @@ app.post('/api/data/', async (req, res) => {
         
             (buttons != null) &&
             buttons.map(async (button, index) => {
-                console.log(button);
                 const {text, id, link} = button;
                 
 
