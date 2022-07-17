@@ -11,15 +11,13 @@
       "password": "1wiCNiZ7IC",
       "database": "sql11507087",
       "host": "sql11.freesqldatabase.com",
-      "dialect": "mysql",
-      "dialectModule": "mysql2"
+      "dialect": "mysql"
     },
     "production": {
       "username": "sql11507087",
       "password": "1wiCNiZ7IC",
       "database": "sql11507087",
       "host": "sql11.freesqldatabase.com",
-      "dialect": "mysql",
-      "dialectModule": "mysql2"
+      "dialect": "mysql"
     }
   }
