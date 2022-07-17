@@ -7,17 +7,19 @@
       "dialect": "mysql"
     },
     "test": {
-      "username": "root",
-      "password": "1234",
-      "database": "imobis",
-      "host": "localhost",
-      "dialect": "mysql"
+      "username": "sql11507087",
+      "password": "1wiCNiZ7IC",
+      "database": "sql11507087",
+      "host": "sql11.freesqldatabase.com",
+      "dialect": "mysql",
+      "dialectModule": "mysql2"
     },
     "production": {
       "username": "sql11507087",
       "password": "1wiCNiZ7IC",
       "database": "sql11507087",
       "host": "sql11.freesqldatabase.com",
-      "dialect": "mysql"
+      "dialect": "mysql",
+      "dialectModule": "mysql2"
     }
   }
