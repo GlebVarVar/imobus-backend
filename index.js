@@ -19,6 +19,7 @@ const { Users, Messengers, Buttons } = require("./models");
 
 // получение информации о пользователе
 app.get('/api/data/', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     const username = req.headers.username;
     
     const data = await Users.findOne({
@@ -37,6 +38,7 @@ app.get('/api/data/', async (req, res) => {
 
 // изменение информации о пользователе или добавление нового пользователя
 app.post('/api/data/', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     const {userName, data} = req.body;
 
     // пробуем найти пользователя в базе
