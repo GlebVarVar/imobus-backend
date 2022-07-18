@@ -3,12 +3,9 @@ const cors = require('cors');
 
 const app = express();
 
-
+app.use(cors());
 app.use(express.json());
-const corsOptions = {
-    origin: "https://imobus-front.vercel.app/",
-    }
-app.use(cors(corsOptions));
+
 
 
 app.use(express.static('public'));
